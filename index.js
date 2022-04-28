@@ -1,9 +1,7 @@
-import express from 'express';
-import * as ReactDOMServer from 'react-dom/server';
+const express = require('express');
 
 
-import fetch from 'node-fetch';
-//const fetch = require('node-fetch');
+const fetch = require('node-fetch');
 
 const app = express();
 
