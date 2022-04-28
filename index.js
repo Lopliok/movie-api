@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 
 
-const fetch = require('node-fetch');
+import fetch from 'node-fetch';
 
 const app = express();
 
@@ -20,12 +20,8 @@ const loadMovies = async () => {
 }
 
 const loadSpecies = async (speciesUrls) => {
-    const speciesCallbacks = speciesUrls.map((specie) => fetch(specie))
-
-    const responses = await Promise.all(speciesCallbacks)
-    const json = responses.map((response) => response.json());
-    const species = await Promise.all(json);
-    return species
+    const speciesCallbacks = speciesUrls.map((specie) => fetch(specie).then(r => r.json()))   
+    return await Promise.all(speciesCallbacks)
 }
 
 const loadMovie = async (id) => {
